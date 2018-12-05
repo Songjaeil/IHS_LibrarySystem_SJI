@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>본인 확인 페이지</title>
+<title>회원 정보 수정 페이지</title>
 </head>
 <body>
 	<form name="membermodifyForm" action="memberIdentification.lib"
@@ -21,7 +21,7 @@
 			</tr>
 		</table>
 		<section>
-			<a href="javascript:membermodifyForm()">[확인]</a>&nbsp;&nbsp;<a
+			<a href="javascript:membermodifyForm.submit()">[확인]</a>&nbsp;&nbsp;<a
 				href="javascript:history.go(-1)">[뒤로]</a>
 		</section>
 	</form>

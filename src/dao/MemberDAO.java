@@ -71,4 +71,52 @@ public class MemberDAO {
 		return loginId;
 	}
 
+	public Members memberModify(String id) {
+		Members member = null;
+		String sql = "SELECT * FROM MEMBERS WHERE MEMBER_ID=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				member = new Members();
+				member.setMEMBER_ID(rs.getString("MEMBER_ID"));
+				member.setMEMBER_PASSWORD(rs.getString("MEMBER_PASSWORD"));
+				member.setMEMBER_NAME(rs.getString("MEMBER_NAME"));
+				member.setMEMBER_AGE(rs.getInt("MEMBER_AGE"));
+				member.setMEMBER_ADDRESS(rs.getString("MEMBER_ADDRESS"));
+				member.setMEMBER_POINT(rs.getInt("MEMBER_POINT"));
+				member.setMEMBER_GENRE(rs.getString("MEMBER_GENRE"));
+
+				System.out.println("DB에서 조회한 password : " + id);
+			}
+		} catch (Exception e) {
+			System.out.println("memberIdenfication 오류 : " + e);
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return member;
+	}
+
+	public int Modify(String id) {
+		int updateCount = 0;
+		Members member = null;
+		String sql = "UPDATE MEMBERS SET MEMBER_PASSWORD=?,MEMBER_NAME=?,MEMBER_AGE=?,MEMBER_ADDRESS=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getMEMBER_PASSWORD());
+			pstmt.setString(2, member.getMEMBER_NAME());
+			pstmt.setInt(3, member.getMEMBER_AGE());
+			pstmt.setString(4, member.getMEMBER_ADDRESS());
+
+			updateCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("memberIdenfication 오류 : " + e);
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return updateCount;
+	}
 }

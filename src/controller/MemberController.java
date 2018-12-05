@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import action.MemberModifyAction;
+import action.ModifyAction;
 import action.MemberJoinAction;
 import action.MemberLoginAction;
 import action.QnaAction;
@@ -58,7 +60,7 @@ public class MemberController extends HttpServlet {
 		} else if (command.equals("/memberLogout.lib")) {
 			HttpSession session = request.getSession();
 			session.invalidate();
-			response.sendRedirect("./main.jsp");
+			response.sendRedirect("main.jsp");
 		} else if (command.equals("/qnas.lib")) {
 			forward = new ActionForward();
 			forward.setRedirect(true);
@@ -70,13 +72,24 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/memberIdentification.lib")) {
-			action = new MemberIdentificationAction();
+		} else if (command.equals("/membermodify.lib")) {
+			System.out.println("회원정보수정");
+			action = new MemberModifyAction();
 			try {
-
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/modify.lib")) {
+			System.out.println("회원정보수정");
+			action = new ModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/insertBook.lib")) {
+			System.out.println("야호 성공이다");
 		}
 
 		if (forward != null) {
