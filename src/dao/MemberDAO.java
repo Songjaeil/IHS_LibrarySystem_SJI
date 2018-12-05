@@ -1,6 +1,8 @@
-package dao;
+﻿package dao;
 
 import java.sql.*;
+
+import vo.Books;
 import vo.Members;
 import static db.JdbcUtil.*;
 
@@ -118,5 +120,26 @@ public class MemberDAO {
 			close(rs);
 		}
 		return updateCount;
+	}
+
+	public int bookInsert(Books book) {
+		String sql = "INSERT INTO BOOKS VALUES (?,?,?,?,?,?,?)";
+		int result = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, book.getBOOK_ID());
+			pstmt.setInt(2, book.getBOOK_STOCK());
+			pstmt.setString(3, book.getBOOK_NAME());
+			pstmt.setInt(4, book.getBOOK_PRICE());
+			pstmt.setInt(5, book.getBOOK_RENTALPRICE());
+			pstmt.setString(6, book.getBOOK_AUTHOR());
+			pstmt.setString(7, book.getBOOK_PUBLISHER());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("memberJoin 오류!!" + e);
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }

@@ -1,4 +1,4 @@
-package controller;
+﻿package controller;
 
 import java.io.IOException;
 
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import action.BookInsertAction;
 import action.MemberModifyAction;
 import action.ModifyAction;
 import action.MemberJoinAction;
@@ -34,7 +35,7 @@ public class MemberController extends HttpServlet {
 		String command = RequestURI.substring(contextPath.length());
 		ActionForward forward = null;
 		Action action = null;
-
+		System.out.println(command);
 		if (command.equals("/memberJoinAction.lib")) {
 			action = new MemberJoinAction();
 			try {
@@ -90,6 +91,16 @@ public class MemberController extends HttpServlet {
 			}
 		} else if (command.equals("/insertBook.lib")) {
 			System.out.println("야호 성공이다");
+			action = new BookInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/insertBooks.lib")) {
+			forward = new ActionForward();
+			forward.setRedirect(true);
+			forward.setPath("./insertBooks.jsp");
 		}
 
 		if (forward != null) {

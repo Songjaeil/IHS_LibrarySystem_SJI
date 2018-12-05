@@ -33,7 +33,7 @@
 			<tr>
 				<td>주소 :</td>
 				<td><input type="text" name="MEMBER_ADDRESS"
-					id="MEMBER_ADDRESS" value="${member.MEMBER_ADDRESS }"</td>
+					id="MEMBER_ADDRESS" value="${member.MEMBER_ADDRESS }"></td>
 			</tr>
 			<tr>
 				<td>포인트 :</td>
