@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import action.MemberJoinAction;
 import action.MemberLoginAction;
+import action.QnaAction;
 import vo.ActionForward;
 
 @WebServlet("*.lib")
@@ -58,6 +59,24 @@ public class MemberController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();
 			response.sendRedirect("./main.jsp");
+		} else if (command.equals("/qnas.lib")) {
+			forward = new ActionForward();
+			forward.setRedirect(true);
+			forward.setPath("./qnas.jsp");
+		} else if (command.equals("/qnasAcition.lib")) {
+			action = new QnaAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/memberIdentification.lib")) {
+			action = new MemberIdentificationAction();
+			try {
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

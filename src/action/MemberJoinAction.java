@@ -41,7 +41,7 @@ public class MemberJoinAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('회원가입 실패')");
+			out.println("alert('아이디가 중복되었습니다.')");
 			out.println("history.back()</script>");
 		} else {
 			System.out.println("회원가입");

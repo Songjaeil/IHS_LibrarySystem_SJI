@@ -18,10 +18,10 @@
 				%> <a href="./loginForm.jsp">로그인</a> <a href="./joinForm.jsp">회원
 					가입</a> <%
  	} else {
- %> <%=session.getAttribute("ID")%> &nbsp; <a href="memberLogout.lib">로그아웃</a>
-				<%
-					}
-				%>
+ %> <%=session.getAttribute("ID")%> &nbsp;&nbsp;<a href="./myPage.jsp">내
+					정보</a>&nbsp;&nbsp; <a href="memberLogout.lib">로그아웃</a> <%
+ 	}
+ %>
 			</td>
 		</tr>
 	</table>
